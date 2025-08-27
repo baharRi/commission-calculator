@@ -1,0 +1,29 @@
+// src/components/WidgetLauncher.jsx
+import { useEffect, useRef } from "react";
+import ReactDOM from "react-dom/client";
+import CommissionCalculator from "./CommissionCalculator";
+
+export default function WidgetLauncher() {
+  const newWindow = useRef(null);
+  const containerEl = document.createElement("div");
+
+  useEffect(() => {
+    // Open a new browser window
+    newWindow.current = window.open(
+      "",
+      "Commission Calculator",
+      "width=400,height=600,left=200,top=200"
+    );
+
+    // Add React root to new window
+    newWindow.current.document.body.appendChild(containerEl);
+
+    const root = ReactDOM.createRoot(containerEl);
+    root.render(<CommissionCalculator />);
+
+    // Cleanup when component unmounts
+    return () => newWindow.current.close();
+  }, []);
+
+  return null;
+}

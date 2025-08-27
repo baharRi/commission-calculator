@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import WidgetLauncher from './components/WidgetLauncher';
 
 function App() {
   return (
