@@ -12,19 +12,22 @@ export default function CommissionCalculator() {
   };
 
   return (
-    <div style={{ padding: "1rem", fontFamily: "sans-serif" }}>
-      <h2>Commission Calculator</h2>
+    <body className="calculator">
+      <h1>Hello, Bahar.</h1>
+      <p>Ready to make something new?</p>
       <input
         type="number"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder="Enter amount"
       />
+      <div className="button-container">
       <button onClick={calculate}>Calculate</button>
+      </div>
 
       {commission !== null && (
         <p>Commission: ${commission.toFixed(2)}</p>
       )}
-    </div>
+    </body>
   );
 }
