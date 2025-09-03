@@ -1,28 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
-import CommissionCalculator from './components/CommissionCalculator';
+import CommissionCalculator from './components/pages/CommissionCalculator';
+import Form from './components/pages/Form';
+import Result from './components/pages/Result';
+import { useState } from 'react';
 
 function App() {
-/*  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}*/
-  return <CommissionCalculator />;
+  
+  const [screen, setScreen] = useState("home");
+  const [formData, setFormData] = useState(null);
+
+  console.log(screen);
+  if (screen === "home") {
+    return <CommissionCalculator onNext={() => setScreen("form")} />;
+
+  } else if (screen === "form") {
+    return <Form 
+      onNext={() => setScreen("result")}
+      onData={ setFormData } 
+      onCancel={() => setScreen("home")}/>;
+
+  } else if (screen === "result") {
+    return <Result 
+    data={ formData } 
+    onRestart={() => { setScreen("home"); setFormData(null); }}/>;
+  }
+  return null;
+  
 }
 
 export default App;

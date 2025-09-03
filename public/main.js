@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron") //634 (gzipped: 392)
+const { app, BrowserWindow } = require("electron")
 
 require("@electron/remote/main").initialize()
 
@@ -7,6 +7,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 400,
         height: 600, 
+        frame: false,
         webPreferences: {
             enableRemoteModule: true
         }
